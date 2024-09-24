@@ -1,0 +1,14 @@
+func Ft_missing(nums []int) int {
+	present := make([]bool, len(nums)+1)
+	for _, num := range nums {
+		present[num] = true
+	}
+
+	for i := 0; i <= len(nums); i++ {
+		if !present[i] {
+			return i
+		}
+	}
+
+	return -1
+}

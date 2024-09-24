@@ -1,0 +1,20 @@
+func Ft_non_overlap(intervals [][]int) int {
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][1] < intervals[j][1]
+	})
+
+	count := 0
+
+	prev := intervals[0]
+
+	for _, interval := range intervals[1:] {
+		if interval[0] < prev[1] {
+			count++
+		} else {
+
+			prev = interval
+		}
+	}
+
+	return count
+}

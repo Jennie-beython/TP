@@ -1,0 +1,24 @@
+func Ft_max_substring(s string) int {
+    maxLen := 0
+
+    start := 0
+    charIndex := make(map[rune]int)
+
+    for end, char := range s {
+        if idx, ok := charIndex[char]; ok && idx >= start {
+            start = idx + 1
+        }
+        charIndex[char] = end
+
+
+        maxLen = max(maxLen, end-start+1)
+    }
+
+    return maxLen
+
+func max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}

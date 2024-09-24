@@ -1,0 +1,32 @@
+func Ft_min_window(s string, t string) string {
+    result := ""
+    minLen := int(^uint(0) >> 1)
+
+    tCount := make(map[rune]int)
+    for _, char := range t {
+        tCount[char]++
+    }
+    windowCount := make(map[rune]int)
+
+    start := 0
+
+    for end, char := range s {
+    
+        windowCount[char]++
+
+        for len(windowCount) == len(tCount) {
+            if end-start+1 < minLen {
+               
+                result = s[start : end+1]
+                minLen = end - start + 1
+            }
+            windowCount[s[start]]--
+            if windowCount[s[start]] == 0 {
+                delete(windowCount, s[start])
+            }
+            start++
+        }
+    }
+
+    return result
+}
